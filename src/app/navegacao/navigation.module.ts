@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AcessoNegadoComponent } from './acesso-negado/acesso-negado.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -12,7 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AcessoNegadoComponent, 
+    ForbiddenComponent, 
     FooterComponent, 
     MenuComponent, 
     NotFoundComponent, 
@@ -27,8 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MenuComponent,
     FooterComponent,
     NotFoundComponent,
-    AcessoNegadoComponent,
+    ForbiddenComponent,
     HomeComponent
   ]
 })
-export class NavegacaoModule { }
+export class NavigationModule { }

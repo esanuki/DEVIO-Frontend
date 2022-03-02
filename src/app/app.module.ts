@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavegacaoModule } from './navegacao/navegacao.module';
+import { NavigationModule } from './navegacao/navigation.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    NavegacaoModule,
+    NavigationModule,
     
     AppRoutingModule
   ],
