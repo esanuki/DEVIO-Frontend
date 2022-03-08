@@ -25,7 +25,7 @@ export class AccountService extends BaseService {
 
     login(user: User) {
         return this.http
-            .post(this.url + 'entrar', user, this.getHeaderJson())
+            .post(this.url + 'login', user, this.getHeaderJson())
             .pipe(
                 map(this.extractData),
                 catchError(this.serviceError)

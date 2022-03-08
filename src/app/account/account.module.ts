@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountService } from './services/account.service';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -14,6 +15,7 @@ import { AccountService } from './services/account.service';
   declarations: [
     AccountComponent,
     RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
