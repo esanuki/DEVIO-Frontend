@@ -8,12 +8,12 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
 
-  { path: 'account',
+  { path: 'conta',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
   },
 
-  {path: 'forbidden', component: ForbiddenComponent},
-  {path: 'not-found', component: NotFoundComponent},
+  {path: 'acesso-negado', component: ForbiddenComponent},
+  {path: 'nao-encontrado', component: NotFoundComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

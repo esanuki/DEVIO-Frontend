@@ -9,7 +9,7 @@ export const accountRoutes: Routes = [
         component: AccountComponent,
         children: [
             {
-                path: 'register',
+                path: 'cadastro',
                 component: RegisterComponent
             }
         ]
