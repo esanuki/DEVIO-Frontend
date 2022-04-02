@@ -16,6 +16,6 @@ export class LocalStorageUtil {
 
     saveTokenUser = (token: string) => localStorage.setItem('devio.token', token);
 
-    saveUser = (user: string) => localStorage.setItem('devio.user', user);
+    saveUser = (user: string) => localStorage.setItem('devio.user', JSON.stringify(user));
 
 }

@@ -7,6 +7,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MenuLoginComponent } from './menu-login/menu-login.component';
 
 
 
@@ -16,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent, 
     MenuComponent, 
     NotFoundComponent, 
-    HomeComponent
+    HomeComponent, MenuLoginComponent
   ],
   imports: [
     CommonModule,
