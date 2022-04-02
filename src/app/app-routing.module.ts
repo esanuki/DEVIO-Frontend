@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'product',
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
   },
+  {
+    path: 'supplier',
+    loadChildren: () => import('./supplier/supplier.module').then(m => m.SupplierModule)
+  },
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: '**', component: NotFoundComponent}
