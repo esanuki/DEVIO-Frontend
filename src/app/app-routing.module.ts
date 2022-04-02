@@ -7,11 +7,13 @@ import { NotFoundComponent } from './navegacao/not-found/not-found.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-
   { path: 'account',
     loadChildren: () => import('./account/account.module').then(m => m.AccountModule)
   },
-
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+  },
   {path: 'forbidden', component: ForbiddenComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: '**', component: NotFoundComponent}
