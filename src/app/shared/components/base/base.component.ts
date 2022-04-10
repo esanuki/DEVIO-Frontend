@@ -55,6 +55,8 @@ export abstract class BaseComponent {
 
     processFail(fail: any){
         this.errors = fail.error.errors;
+        if (this.errors === undefined)
+            this.errors = ['Ocorreu um erro'];
         this.toastr.error('Ocorreu um erro!', 'Falha');
     }
 }

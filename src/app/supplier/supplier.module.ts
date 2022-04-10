@@ -10,6 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SupplierComponent } from './supplier.component';
 import { SupplierRoutingModule } from './supplier-routing.module';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SupplierService } from './services/supplier.service';
 
 
 
@@ -28,8 +32,14 @@ import { SupplierRoutingModule } from './supplier-routing.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgBrazil,
+    TextMaskModule,
+    NgxSpinnerModule,
 
     SupplierRoutingModule
+  ],
+  providers: [
+    SupplierService
   ]
 })
 export class SupplierModule { }
