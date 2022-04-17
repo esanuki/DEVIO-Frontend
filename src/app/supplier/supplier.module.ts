@@ -14,6 +14,7 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SupplierService } from './services/supplier.service';
+import { SupplierResolve } from './services/supplier.resolve';
 
 
 
@@ -39,7 +40,8 @@ import { SupplierService } from './services/supplier.service';
     SupplierRoutingModule
   ],
   providers: [
-    SupplierService
+    SupplierService,
+    SupplierResolve
   ]
 })
 export class SupplierModule { }

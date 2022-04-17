@@ -5,6 +5,7 @@ import { EditSupplierComponent } from "./edit-supplier/edit-supplier.component";
 import { ListSupplierComponent } from "./list-supplier/list-supplier.component";
 import { NewSupplierComponent } from "./new-supplier/new-supplier.component";
 import { RemoveSupplierComponent } from "./remove-supplier/remove-supplier.component";
+import { SupplierResolve } from "./services/supplier.resolve";
 import { SupplierComponent } from "./supplier.component";
 
 export const SupplierRoutes: Routes = [
@@ -17,8 +18,11 @@ export const SupplierRoutes: Routes = [
                 component: NewSupplierComponent
             },
             {
-                path: 'edit-supplier',
-                component: EditSupplierComponent
+                path: 'edit-supplier/:id',
+                component: EditSupplierComponent,
+                resolve: {
+                    supplier: SupplierResolve
+                }
             },
             {
                 path: 'remove-supplier',

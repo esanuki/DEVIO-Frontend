@@ -1,1 +1,42 @@
-<p>list-supplier works!</p>
+<div class="container main-container">
+
+    <h1>Lista de Fornecedores</h1>
+
+    <p>
+        <a class="btn btn-info" [routerLink]="['/supplier/new-supplier']">Novo Fornecedor</a>
+        <br>        
+    </p>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Documento</th>
+                <th>Ativo?</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let supplier of suppliers">
+            <td>
+                {{ supplier.nome }}
+            </td>
+            <td>
+                {{ supplier.tipoFornecedor === 1 ? (supplier.documento | cpf) : (supplier.documento | cnpj) }}
+            </td>
+            <td>
+                <input type="checkbox" [checked]="supplier.ativo" class="check-box" disabled="disabled">
+            </td>
+            <td class="text-right">
+                <a class="btn btn-info" [routerLink]="['/supplier/details-supplier', supplier.id]">
+                    <span class="fa fa-search"></span>
+                </a>&nbsp;
+                <a class="btn btn-warning" [routerLink]="['/supplier/edit-supplier', supplier.id]">
+                    <span class="fa fa-pencil-alt"></span>
+                </a>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/supplier/remove-supplier', supplier.id]">
+                    <span class="fa fa-trash"></span>
+                </a>&nbsp;
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Supplier } from '../models/supplier';
+import { SupplierService } from '../services/supplier.service';
 
 @Component({
   selector: 'app-list-supplier',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListSupplierComponent implements OnInit {
 
-  constructor() { }
+  public suppliers: Supplier[];
+  errorMessage: string;
+
+  constructor(
+    private toastr: ToastrService,
+    private supplierService: SupplierService
+  ) { }
 
   ngOnInit(): void {
+    this.supplierService.getAll()
+      .subscribe(suppliers => {
+        this.suppliers = suppliers
+
+        console.log(suppliers)
+      },
+        error => this.errorToastr(error));
+  }
+
+  errorToastr(message: any){
+    this.toastr.error(JSON.stringify(message));
   }
 
 }
