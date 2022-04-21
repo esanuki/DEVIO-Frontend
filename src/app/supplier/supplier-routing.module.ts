@@ -25,8 +25,11 @@ export const SupplierRoutes: Routes = [
                 }
             },
             {
-                path: 'remove-supplier',
-                component: RemoveSupplierComponent
+                path: 'remove-supplier/:id',
+                component: RemoveSupplierComponent,
+                resolve: {
+                    supplier: SupplierResolve
+                }
             },
             {
                 path: 'details-supplier/:id',

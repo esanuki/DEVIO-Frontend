@@ -3,6 +3,7 @@ import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgBrazilValidators } from 'ng-brazil';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BaseComponent } from 'src/app/shared/components/base/base.component';
 import { SuccessMessages } from 'src/app/shared/models/success-messages';
@@ -32,6 +33,7 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
     private route: ActivatedRoute,
     private ngbService: NgbModal,
     private supplierService: SupplierService,
+    private spinner: NgxSpinnerService,
     router: Router,
     toastr: ToastrService
   ) {
@@ -47,6 +49,9 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
    }
   
   ngOnInit(): void {
+    
+    this.spinner.show()
+    
     this.form = this.fb.group({
       id: '',
       nome: ['', [Validators.required]],
@@ -68,6 +73,10 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
     });
 
     this.fillForm();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   ngAfterViewInit(): void {
@@ -182,6 +191,8 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
 
   update() {
     if ((this.form.dirty || this.enderecoForm.dirty) && this.form.valid){
+      this.spinner.show();
+      
       this.supplier = Object.assign({}, this.supplier, this.form.value);
 
       this.supplier.documento = StringUtils.onlyNumbers(this.supplier.documento);
@@ -190,8 +201,14 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
 
       this.supplierService.updateSupplier(this.supplier)
         .subscribe(
-          success => { this.processSuccess(success) },
-          error => { this.processFail(error) }
+          success => { 
+            this.spinner.hide();
+            this.processSuccess(success);
+          },
+          error => { 
+            this.spinner.hide();
+            this.processFail(error) 
+          }
         )
     }
   }

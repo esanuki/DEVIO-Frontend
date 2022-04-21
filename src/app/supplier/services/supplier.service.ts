@@ -53,6 +53,15 @@ export class SupplierService extends BaseService {
             );
     }
 
+    removeSupplier(id: string): Observable<Supplier>{
+        return this.http
+            .delete(this.url + '/fornecedores/' + id, super.getAuthHeaderJson())
+            .pipe(
+                map(this.extractData),
+                catchError(this.serviceError)
+            );
+    }
+
     updateAddress(address: Address): Observable<Address> {
         return this.http
             .put(this.url + '/fornecedores/endereco/' + address.id, address, super.getAuthHeaderJson())
