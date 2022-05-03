@@ -1,1 +1,61 @@
-<p>new-product works!</p>
+<div class="container main-container">
+    <h3>Novo Produto</h3>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-10">
+            <form [formGroup]="form">
+
+                <div class="form-group">
+                    <label class="control-label">Fornecedor</label>
+                    <select class="form-control" id="fornecedorId" formControlName="fornecedorId">
+                        <option *ngFor="let fornecedor of fornecedores" value="{{fornecedor.id}}">{{fornecedor.nome}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input type="text" id="nome" class="form-control" placeholder="Nome (requerido)" formControlName="nome">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <div>
+                        <textarea id="descricao" cols="40" rows="5" class="form-control" placeholder="Descrição (requerido)" formControlName="descricao"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Imagem do Produto</label>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="imagem" formControlName="imagem" (change)="fileChangeEvent($event)">
+                        <label data-brouse="Procurar" style="width: 400px;" class="custom-file-label"></label>
+                        <span *ngIf="imagemNome"><br>{{ imagemNome }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Valor</label>
+                    <div>
+                        <input type="text" class="form-control" id="valor" placeholder="Valor (requerido)" formControlName="valor" [textMask]="{mask: MASKS.number.textMask}">
+                    </div>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" id="ativo" formControlName="ativo" value="true">Ativo?
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary">&nbsp;
+                    <a class="btn btn-info" [routerLink]="['/product/list-product']">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

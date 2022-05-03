@@ -10,6 +10,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductRoutingModule } from './product-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -28,6 +31,9 @@ import { ProductRoutingModule } from './product-routing.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
+    NgBrazil,
+    TextMaskModule,
 
     ProductRoutingModule
   ]
