@@ -1,23 +1,43 @@
 <div class="container main-container">
+    
+    <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
+        <p style="color: white">Aguardando...</p>
+    </ngx-spinner>
+    
     <h3>Novo Produto</h3>
 
     <hr>
 
     <div class="row">
         <div class="col-md-10">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="addProduct()">
 
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Ocorreu um ou varios erros</h3>
+                    <ul>
+                        <li *ngFor="let error of errors"> {{error}}</li>
+                    </ul>
+                </div>
+                
                 <div class="form-group">
                     <label class="control-label">Fornecedor</label>
                     <select class="form-control" id="fornecedorId" formControlName="fornecedorId">
-                        <option *ngFor="let fornecedor of fornecedores" value="{{fornecedor.id}}">{{fornecedor.nome}}</option>
+                        <option *ngFor="let supplier of suppliers" value="{{supplier.id}}">{{supplier.nome}}</option>
                     </select>
+
+                    <span class="text-danger" *ngIf="displayMessage.fornecedorId">
+                        <p [innerHTML]="displayMessage.fornecedorId"></p>
+                    </span>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Nome</label>
                     <div>
                         <input type="text" id="nome" class="form-control" placeholder="Nome (requerido)" formControlName="nome">
+                        
+                        <span class="text-danger" *ngIf="displayMessage.nome">
+                            <p [innerHTML]="displayMessage.nome"></p>
+                        </span>
                     </div>
                 </div>
 
@@ -25,6 +45,10 @@
                     <label class="control-label">Descrição</label>
                     <div>
                         <textarea id="descricao" cols="40" rows="5" class="form-control" placeholder="Descrição (requerido)" formControlName="descricao"></textarea>
+                        
+                        <span class="text-danger" *ngIf="displayMessage.descricao">
+                            <p [innerHTML]="displayMessage.descricao"></p>
+                        </span>
                     </div>
                 </div>
 
@@ -34,7 +58,29 @@
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="imagem" formControlName="imagem" (change)="fileChangeEvent($event)">
                         <label data-brouse="Procurar" style="width: 400px;" class="custom-file-label"></label>
-                        <span *ngIf="imagemNome"><br>{{ imagemNome }}</span>
+                        <span *ngIf="imageName"><br>{{ imageName }}<br></span>
+
+                        <span class="text-danger" *ngIf="displayMessage.imagem">
+                            <p [innerHTML]="displayMessage.imagem"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div *ngIf="imageName" class="row">
+                    <div class="col col-md-6">
+                        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false"
+                                [aspectRatio]="4 / 3" [resizeToWidth]="256" [cropperMinWidth]="128"
+                                [onlyScaleDown]="true" [roundCropper]="false"
+                                [containWithinAspectRatio]="containWithinAspectRatio" [canvasRotation]="canvasRotation"
+                                [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'"
+                                format="png" (imageCropped)="imageCropped($event)"  (imageLoaded)="imageLoaded()"
+                                (cropperReady)="cropperReady($event)"
+                                (loadImageFailed)="loadImageFailed()"
+                            ></image-cropper>
+                    </div>
+
+                    <div class="col col-md-6">
+                        <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'">
                     </div>
                 </div>
 
@@ -59,3 +105,4 @@
         </div>
     </div>
 </div>
+

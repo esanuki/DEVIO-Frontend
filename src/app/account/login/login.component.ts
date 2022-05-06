@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@ang
 import { FormBuilder, FormControlName, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from 'ngx-custom-validators';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { BaseComponent } from 'src/app/shared/components/base/base.component';
 import { User } from '../models/user';
@@ -23,7 +24,8 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
     toastr: ToastrService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private service: AccountService
+    private service: AccountService,
+    private spinner: NgxSpinnerService
   ) {
     
     super(toastr, router);
@@ -56,11 +58,19 @@ export class LoginComponent extends BaseComponent implements OnInit, AfterViewIn
   login(){
     if (this.form.dirty && this.form.valid) {
       this.user = Object.assign({}, this.user, this.form.value);
+      this.spinner.show();
 
       this.service.login(this.user)
         .subscribe(
-        success => this.processSuccess(success),
-        error => {this.processFail(error)})
+        success => {
+          this.spinner.hide();
+          this.processSuccess(success)
+        },
+        error => {
+          this.spinner.hide();
+          this.processFail(error)
+        
+        })
     }
   }
 

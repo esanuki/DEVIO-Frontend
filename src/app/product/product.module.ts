@@ -13,6 +13,8 @@ import { ProductRoutingModule } from './product-routing.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ProductService } from './services/product.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -34,8 +36,14 @@ import { TextMaskModule } from 'angular2-text-mask';
     NgxSpinnerModule,
     NgBrazil,
     TextMaskModule,
+    ImageCropperModule,
 
-    ProductRoutingModule
+    ProductRoutingModule,
+
+    
+  ],
+  providers: [
+    ProductService
   ]
 })
 export class ProductModule { }

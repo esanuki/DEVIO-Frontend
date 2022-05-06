@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccountRoutingModule } from './account-routing.module';
 import { AccountService } from './services/account.service';
 import { LoginComponent } from './login/login.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -23,6 +24,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
 
     AccountRoutingModule
   ],
