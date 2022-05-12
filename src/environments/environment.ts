@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlService: 'https://localhost:44333/api/v1'
+  urlService: 'https://localhost:44333/api/v1',
+  imagensUrl: 'https://localhost:44333'
 };
 
 /*

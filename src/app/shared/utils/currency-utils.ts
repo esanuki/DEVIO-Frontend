@@ -18,5 +18,7 @@ export class CurrencyUtils {
                 if (decimal === 1) ret += '0';
             }
         }
+
+        return ret;
     }
 }

@@ -15,6 +15,7 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ProductResolver } from './services/product.resolver';
 
 
 
@@ -43,7 +44,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     
   ],
   providers: [
-    ProductService
+    ProductService,
+    ProductResolver
   ]
 })
 export class ProductModule { }

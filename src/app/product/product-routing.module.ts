@@ -6,6 +6,7 @@ import { ListProductComponent } from "./list-product/list-product.component";
 import { NewProductComponent } from "./new-product/new-product.component";
 import { ProductComponent } from "./product.component";
 import { RemoveProductComponent } from "./remove-product/remove-product.component";
+import { ProductResolver } from "./services/product.resolver";
 
 export const productRoutes: Routes = [
     {
@@ -17,8 +18,11 @@ export const productRoutes: Routes = [
                 component: NewProductComponent
             },
             {
-                path: 'edit-product',
-                component: EditProductComponent
+                path: 'edit-product/:id',
+                component: EditProductComponent,
+                resolve: {
+                    produto: ProductResolver
+                }
             },
             {
                 path: 'remove-product',

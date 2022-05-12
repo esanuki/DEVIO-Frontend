@@ -1,1 +1,76 @@
-<p>edit-product works!</p>
+<div class="container main-container">
+    
+    <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true">
+        <p style="color: white">Aguardando...</p>
+    </ngx-spinner>
+
+    <h3>Editar Produto - {{ product.nome }}</h3>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-10">
+            <form enctype="multipart/form-data" [formGroup]="form" (ngSubmit)="edit()">
+
+                <div class="form-group">
+                    <label class="form-label">Fornecedor</label>
+                    <select class="form-control" id="fornecedorId" formControlName="fornecedorId">
+                        <option *ngFor="let fornecedor of suppliers" value="{{fornecedor.id}}">{{fornecedor.nome}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input type="text" class="form-control" id="nome" placeholder="Nome (requerido)" formControlName="nome">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Descrição</label>
+                    <div>
+                        <textarea id="descricao" cols="40" rows="5" maxlength="10000" placeholder="Descrição (requerido)" formControlName="descricao"></textarea>
+                    </div>
+                </div>
+
+                <div *ngIf="!imagePreview" class="form-group">
+                    <label>Imagem Atual</label><br>
+                    <img [src]="imageOriginalSrc" style="width: 70px; height: 100px;">
+                </div>
+                <div *ngIf="imagePreview" class="form-group">
+                    <label>Nova Imagem</label><br>
+                    <img [src]="imagePreview" style="width: 70px; height: 100px;">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Imagem do Produto</label>
+                    <div class="custom-file">
+                        <input type="file" accept="image/jpg,image/png,image/jfif" class="custom-file-input" id="imagem"
+                            formControlName="imagem" #fileInput (change)="upload(fileInput.files)">
+                        <label data-browse="Procurar" style="width: 400px;" class="custom-file-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Valor</label>
+                    <div>
+                        <input type="text" class="form-control" id="valor" placeholder="Valor (requerido)" formControlName="valor" 
+                            [textMask]="{mask: MASKS.number.textMask}">
+                    </div>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" id="ativo" formControlName="ativo" name="ativo" value="true">Ativo?
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="submit" [disabled]="!form.valid" value="Editar">&nbsp;
+                    <a class="btn btn-info" [routerLink]="['/product/list-product']">Voltar</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

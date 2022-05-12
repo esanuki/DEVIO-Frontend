@@ -19,9 +19,31 @@ export class ProductService extends BaseService {
             .pipe(catchError(this.serviceError));
     }
 
+    getbyId(id: string): Observable<Product> {
+        return this.http
+            .get<Product>(this.url + '/produtos/' + id, this.getAuthHeaderJson())
+            .pipe(catchError(this.serviceError));
+
+    }
+
+    getAll(): Observable<Product[]> {
+        return this.http
+            .get<Product[]>(this.url + '/produtos', this.getAuthHeaderJson())
+            .pipe(catchError(this.serviceError));
+    }
+
     addProduct(product: Product): Observable<Product> {
         return this.http
             .post(this.url + '/produtos', product, this.getAuthHeaderJson())
+            .pipe(
+                map(this.extractData),
+                catchError(this.serviceError)
+            );
+    }
+
+    editProduct(product: Product): Observable<Product> {
+        return this.http
+            .put(this.url + '/produtos', product,this.getAuthHeaderJson())
             .pipe(
                 map(this.extractData),
                 catchError(this.serviceError)
