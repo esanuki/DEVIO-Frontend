@@ -25,12 +25,18 @@ export const productRoutes: Routes = [
                 }
             },
             {
-                path: 'remove-product',
-                component: RemoveProductComponent
+                path: 'remove-product/:id',
+                component: RemoveProductComponent,
+                resolve: {
+                    produto: ProductResolver
+                }
             },
             {
-                path: 'details-product',
-                component: DetailsProductComponent
+                path: 'details-product/:id',
+                component: DetailsProductComponent,
+                resolve: {
+                    produto: ProductResolver
+                }
             },
             {
                 path: 'list-product',

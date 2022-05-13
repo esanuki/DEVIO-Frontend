@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControlName, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent extends BaseComponent implements OnInit {
+export class EditProductComponent extends BaseComponent implements OnInit, AfterViewInit {
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   
@@ -39,9 +39,33 @@ export class EditProductComponent extends BaseComponent implements OnInit {
   ) { 
     super(toastr, router);
 
+    this.validationMessages = {
+      fornecedorId: {
+        required: 'Escolha um fornecedor'
+      },
+      nome: {
+        required: 'Informe o Nome',
+        minlength: 'Mínimo de 2 caracteres',
+        maxlength: 'Máximo de 200 caracteres'
+      },
+      descricao: {
+        required: 'Informe uma Descrição',
+        minlength: 'Mínimo de 2 caracteres',
+        maxlength: 'Máximo de 1000 caracteres'
+      },
+      imagem: {
+        required: 'Informe a Imagem'
+      },
+      valor: {
+        required: 'Informe o Valor'
+      }
+    };
+
+    super.configMessagesValidation(this.validationMessages);
+
     this.product = this.route.snapshot.data['produto'];
   }
-
+  
   ngOnInit(): void {
     this.productService.getSuppliers()
       .subscribe(data => this.suppliers = data);
@@ -68,6 +92,10 @@ export class EditProductComponent extends BaseComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+    super.configValidation(this.formInputElements);
+  }
+
   edit() {
     if (this.form.dirty && this.form.valid) {
       this.spinner.show();
@@ -76,6 +104,20 @@ export class EditProductComponent extends BaseComponent implements OnInit {
 
       if (this.imageBase64){
         this.product.imagemUpload = this.imageBase64;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
         this.product.imagem = this.imageName;
       }
 
