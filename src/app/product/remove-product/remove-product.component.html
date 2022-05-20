@@ -1,4 +1,8 @@
 <div class="container main-container">
+    <ngx-spinner bdColor="rgba(0,0,0,0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true">
+        <p style="color: white">Aguardando...</p>
+    </ngx-spinner>
+    
     <h4>Excluir {{product.nome}}</h4>
     <br>
     <h5>Você tem certeza disso?</h5>
@@ -24,7 +28,7 @@
             </dl>
 
             <div>
-                <a class="btn btn-danger" href="javascript:void(0)">Excluir</a>&nbsp;
+                <a class="btn btn-danger" (click)="remove()">Excluir</a>&nbsp;
                 <a class="btn btn-info" href="javascript:window.history.back()">Voltar</a>
             </div>
         </div>

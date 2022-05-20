@@ -49,4 +49,13 @@ export class ProductService extends BaseService {
                 catchError(this.serviceError)
             );
     }
+
+    removeProduct(id: string): Observable<Product> {
+        return this.http
+            .delete(this.url + '/produtos?id=' + id, this.getAuthHeaderJson())
+            .pipe(
+                map(this.extractData),
+                catchError(this.serviceError)
+            );
+    }
 }
