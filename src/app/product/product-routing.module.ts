@@ -1,3 +1,4 @@
+import { ProductGuard } from './services/product.guard';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DetailsProductComponent } from "./details-product/details-product.component";
@@ -15,11 +16,17 @@ export const productRoutes: Routes = [
         children: [
             {
                 path: 'new-product',
-                component: NewProductComponent
+                component: NewProductComponent,
+                canDeactivate: [ProductGuard],
+                canActivate: [ProductGuard],
+                data: [{ claim: {nome: 'Produto', valor: 'Adicionar'}}]
+
             },
             {
                 path: 'edit-product/:id',
                 component: EditProductComponent,
+                canActivate: [ProductGuard],
+                data: [{claim: {nome: 'Produto', valor: 'Atualizar'}}],
                 resolve: {
                     produto: ProductResolver
                 }
@@ -27,6 +34,8 @@ export const productRoutes: Routes = [
             {
                 path: 'remove-product/:id',
                 component: RemoveProductComponent,
+                canActivate: [ProductGuard],
+                data: [{claim: {nome: 'Produto', valor: 'Excluir'}}],
                 resolve: {
                     produto: ProductResolver
                 }
@@ -40,7 +49,9 @@ export const productRoutes: Routes = [
             },
             {
                 path: 'list-product',
-                component: ListProductComponent
+                component: ListProductComponent,
+                canActivate: [ProductGuard],
+                data: [{claim: {nome: 'Produto', valor: 'Visualizar'}}]
             }
         ]
     }

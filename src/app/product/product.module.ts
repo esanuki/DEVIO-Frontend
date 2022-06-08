@@ -16,16 +16,17 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { ProductService } from './services/product.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ProductResolver } from './services/product.resolver';
+import { ProductGuard } from './services/product.guard';
 
 
 
 @NgModule({
   declarations: [
     ProductComponent,
-    NewProductComponent, 
-    EditProductComponent, 
-    RemoveProductComponent, 
-    ListProductComponent, 
+    NewProductComponent,
+    EditProductComponent,
+    RemoveProductComponent,
+    ListProductComponent,
     DetailsProductComponent
   ],
   imports: [
@@ -41,11 +42,12 @@ import { ProductResolver } from './services/product.resolver';
 
     ProductRoutingModule,
 
-    
+
   ],
   providers: [
     ProductService,
-    ProductResolver
+    ProductResolver,
+    ProductGuard
   ]
 })
 export class ProductModule { }

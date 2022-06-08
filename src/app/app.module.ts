@@ -9,6 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationModule } from './navegacao/navigation.module';
+import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { TesteInterceptor } from './shared/interceptor/teste.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { NavigationModule } from './navegacao/navigation.module';
     
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TesteInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

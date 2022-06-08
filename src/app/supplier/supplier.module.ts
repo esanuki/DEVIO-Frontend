@@ -15,6 +15,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SupplierService } from './services/supplier.service';
 import { SupplierResolve } from './services/supplier.resolve';
+import { SupplierGuard } from './services/supplier.guard';
+import { ProductListComponent } from './product/product-list.component';
 
 
 
@@ -25,7 +27,8 @@ import { SupplierResolve } from './services/supplier.resolve';
     EditSupplierComponent, 
     RemoveSupplierComponent, 
     DetailsSupplierComponent, 
-    ListSupplierComponent
+    ListSupplierComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +44,8 @@ import { SupplierResolve } from './services/supplier.resolve';
   ],
   providers: [
     SupplierService,
-    SupplierResolve
+    SupplierResolve,
+    SupplierGuard
   ]
 })
 export class SupplierModule { }

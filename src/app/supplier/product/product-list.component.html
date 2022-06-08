@@ -1,0 +1,39 @@
+<hr>
+<h4>Produtos</h4>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Fornecedor</th>
+            <th>Valor</th>
+            <th>Ativo?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produto of products">
+            <td>
+                <img src="{{ image }}/{{produto.imagem}}" style="width: 70px; height: 100px;">
+            </td>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.nomeFornecedor }}</td>
+            <td>{{ produto.valor | currencyBrazil }}</td>
+            <td>
+                <input type="checkbox" [checked]="produto.ativo" class="check-box" disabled="disabled">
+            </td>
+            <td class="text-right">
+                <a class="btn btn-info" [routerLink]="['/product/details-product', produto.id]">
+                    <span class="fa fa-search"></span>
+                </a>&nbsp;
+                <a class="btn btn-warning" [routerLink]="['/product/edit-product', produto.id]">
+                    <span class="fa fa-pencil-alt"></span>
+                </a>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/product/remove-product', produto.id]">
+                    <span class="fa fa-trash"></span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

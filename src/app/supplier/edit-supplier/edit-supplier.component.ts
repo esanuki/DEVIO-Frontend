@@ -46,6 +46,8 @@ export class EditSupplierComponent extends BaseComponent implements OnInit, Afte
 
     this.supplier = this.route.snapshot.data['supplier'];
 
+    console.log(JSON.stringify(this.supplier));
+
    }
   
   ngOnInit(): void {
